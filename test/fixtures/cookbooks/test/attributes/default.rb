@@ -1,1 +1,1 @@
-default['slackbot']['api_token'] = 'fake'
+default['slackbot']['api_token'] = 'none'

@@ -1,4 +1,4 @@
-describe command '/opt/slackbot/bot.py' do
-  its('exit_status') { should eq 1 }
-  its('stderr') { should match /invalid_auth/ }
+describe command '/opt/slackbot/bot.py --test' do
+  its('exit_status') { should eq 0 }
+  its('stdout') { should eq "test succeeded\n" }
 end

@@ -1,9 +1,21 @@
 #!<%= node['slackbot']['target_dir'] %>/.env/bin/python
 
+import time
+import sys
+
 from slackbot.bot import Bot
-def main():
+import slackbot_settings
+
+def main(argv):
+    if slackbot_settings.API_TOKEN == 'none':
+        if '--test' in argv:
+            # verification test - validate that settings and libs import
+            print('test succeeded')
+            sys.exit(0)
+        # For service test purposes, stay running like a daemon
+        time.sleep(10000)
     bot = Bot()
     bot.run()
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv)
