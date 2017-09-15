@@ -1,25 +1,26 @@
 ---
 driver:
-  name: vagrant
+  name: ec2
+  instance_type: t2.micro
+  retryable_tries: 120
 
 provisioner:
   name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
-  always_update_cookbooks: true
 
 verifier:
   name: inspec
 
+transport:
+  ssh_key: /home/jtatum/.ssh/id_rsa
+
 platforms:
+  - name: ubuntu-14.04
   - name: ubuntu-16.04
-  - name: centos-7
 
 suites:
   - name: default
     run_list:
-      - recipe[slackbot-chef::default]
+      - recipe[test::default]
     verifier:
       inspec_tests:
         - test/smoke/default
