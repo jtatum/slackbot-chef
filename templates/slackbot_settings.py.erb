@@ -1,4 +1,4 @@
 API_TOKEN = "<%= node['slackbot']['api_token'] %>"
-PLUGINS = [<% node['slackbot']['plugins'].each do |plugin| %>
-    "<%= plugin %>",
+PLUGINS = [
+<% node['slackbot']['plugins'].each do |plugin| %>    "<%= plugin %>",
 <% end %>]
